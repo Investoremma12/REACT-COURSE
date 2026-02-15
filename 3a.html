@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<title>React Basics</title>
+	</head>
+	<body>
+		<div class="js-container"></div>
+		<script src="react-basics.js"></script>
+		<script src="https://unpkg.com/supersimpledev/react.js"></script>
+		<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+		<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+		<script type="text/babel">
+			function ClickedCounter({ currentCount, setCurrentCount }) {
+				function updatecount() {
+					setCurrentCount(currentCount + 1);
+				}
+
+				return (
+					<>
+						{currentCount === 1 && (
+							<button onClick={updatecount}>Clicked {currentCount} time</button>
+						)}
+						{currentCount !== 1 && (
+							<button onClick={updatecount}>
+								Clicked {currentCount} times
+							</button>
+						)}
+					</>
+				);
+			}
+
+			function App() {
+				const [currentCount, setCurrentCount] = React.useState(0);
+				function resetCount() {
+					setCurrentCount(0);
+				}
+				return (
+					<>
+						<ClickedCounter
+							currentCount={currentCount}
+							setCurrentCount={setCurrentCount}
+						/>
+						<ClickedCounter
+							currentCount={currentCount}
+							setCurrentCount={setCurrentCount}
+						/>
+						<button onClick={resetCount}>Reset</button>
+					</>
+				);
+			}
+
+			const container = document.querySelector('.js-container');
+			ReactDOM.createRoot(container).render(<App />);
+		</script>
+	</body>
+</html>
