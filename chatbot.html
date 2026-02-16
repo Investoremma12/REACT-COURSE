@@ -68,6 +68,14 @@
 				overflow: scroll;
 				scrollbar-width: none;
 			}
+			.welcome-text {
+				color: grey;
+				text-align: center;
+			}
+			.loading-image {
+				height: 40px;
+				margin: -15px;
+			}
 		</style>
 	</head>
 	<body>
@@ -106,7 +114,9 @@
 					setChatMessages([
 						...newChatMessages,
 						{
-							message: 'Loading...',
+							message: (
+								<img className="loading-image" src="loading-spinner.gif" />
+							),
 							sender: 'robot',
 							id: crypto.randomUUID(),
 						},
@@ -182,24 +192,39 @@
 			}
 
 			function ChatMessages({ chatMessages }) {
-				const chatMesssagesRef = React.useRef(null);
+				function useAutoScroll(dependencies) {
+					const chatMesssagesRef = React.useRef(null);
 
-				React.useEffect(() => {
-					const containerElem = chatMesssagesRef.current;
+					React.useEffect(() => {
+						const containerElem = chatMesssagesRef.current;
 
-					if (containerElem) {
-						containerElem.scrollTop = containerElem.scrollHeight;
-					}
-				}, [chatMessages]);
+						if (containerElem) {
+							containerElem.scrollTop = containerElem.scrollHeight;
+						}
+					}, [chatMessages]);
+
+					return chatMesssagesRef;
+				}
 				return (
-					<div className="chat-messeges-container" ref={chatMesssagesRef}>
+					<div
+						className="chat-messeges-container"
+						ref={useAutoScroll(chatMessages)}
+					>
+						{chatMessages.length === 0 && (
+							<p className="welcome-text">
+								Welcome to the chatbot project! send a message using the textbox
+								below.
+							</p>
+						)}
 						{chatMessages.map((chatMessage) => {
 							return (
-								<ChatMessage
-									message={chatMessage.message}
-									sender={chatMessage.sender}
-									key={chatMessage.id}
-								/>
+								<>
+									<ChatMessage
+										message={chatMessage.message}
+										sender={chatMessage.sender}
+										key={chatMessage.id}
+									/>
+								</>
 							);
 						})}
 					</div>
@@ -207,28 +232,7 @@
 			}
 
 			function App() {
-				const [chatMessages, setChatMessages] = React.useState([
-					{
-						message: 'hello chatbot',
-						sender: 'user',
-						id: 'id1',
-					},
-					{
-						message: 'Hello! How can i help you?',
-						sender: 'robot',
-						id: 'id2',
-					},
-					{
-						message: 'can you get me todays date?',
-						sender: 'user',
-						id: 'id3',
-					},
-					{
-						message: 'Today is September 27',
-						sender: 'robot',
-						id: 'id4',
-					},
-				]);
+				const [chatMessages, setChatMessages] = React.useState([]);
 				// const [chatMessages, setChatMessages] = array;
 				// const chatMessages = array[0];
 

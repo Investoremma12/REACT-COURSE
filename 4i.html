@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+	<head>
+		<title>React Basics</title>
+
+		<style>
+			body {
+				font-family: Arial;
+				margin: 0px;
+			}
+			.clicked-count {
+				background-color: rgb(25, 135, 84);
+				color: white;
+				border: none;
+				cursor: pointer;
+				padding: 6px 13px;
+				margin-left: 9px;
+				border-radius: 1px;
+			}
+			.clicked-buttons-container {
+				display: flex;
+				justify-content: center;
+				height: 100vh;
+				align-items: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="js-container"></div>
+		<script src="react-basics.js"></script>
+		<script src="https://unpkg.com/supersimpledev/react.js"></script>
+		<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+		<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+		<script type="text/babel">
+			function ClickedCounter({ currentCount, setCurrentCount }) {
+				const autoClickRef = React.useRef(null);
+				function autoClick() {
+					setInterval(() => {
+						const buttonElem = autoClickRef.current;
+
+						buttonElem.click();
+					}, 1000);
+				}
+				function updatecount() {
+					setCurrentCount(currentCount + 1);
+				}
+
+				function resetCount() {
+					setCurrentCount(0);
+				}
+
+				return (
+					<div className="clicked-buttons-container">
+						{currentCount === 1 && (
+							<button
+								onClick={updatecount}
+								ref={autoClickRef}
+								className="clicked-count"
+							>
+								Clicked {currentCount} time
+							</button>
+						)}
+						{currentCount !== 1 && (
+							<button
+								onClick={updatecount}
+								ref={autoClickRef}
+								className="clicked-count"
+							>
+								Clicked {currentCount} times
+							</button>
+						)}
+
+						<button onClick={resetCount} className="clicked-count">
+							Reset
+						</button>
+						<button onClick={autoClick} className="clicked-count">
+							Auto Click
+						</button>
+					</div>
+				);
+			}
+
+			function App() {
+				const [currentCount, setCurrentCount] = React.useState(0);
+
+				return (
+					<>
+						<ClickedCounter
+							currentCount={currentCount}
+							setCurrentCount={setCurrentCount}
+						/>
+					</>
+				);
+			}
+
+			const container = document.querySelector('.js-container');
+			ReactDOM.createRoot(container).render(<App />);
+		</script>
+	</body>
+</html>
