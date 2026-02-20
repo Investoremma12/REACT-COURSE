@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { Chatbot } from 'supersimpledev';
 import LoadingSpinnerImage from '../assets/loading-spinner.gif';
 import './ChatInput.css';
+import dayjs from 'dayjs';
 
 export function ChatInput({ chatMessages, setChatMessages }) {
 	const [inputText, setInputText] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+
 	function saveInputText(event) {
 		setInputText(event.target.value);
 	}
@@ -13,7 +15,7 @@ export function ChatInput({ chatMessages, setChatMessages }) {
 		if (inputText.trim() === '' || isLoading) {
 			return;
 		}
-
+		const time = dayjs().valueOf();
 		setIsLoading(true);
 		const newChatMessages = [
 			...chatMessages,
@@ -21,6 +23,7 @@ export function ChatInput({ chatMessages, setChatMessages }) {
 				message: inputText,
 				sender: 'user',
 				id: crypto.randomUUID(),
+				chatTime: dayjs(time).format('h:mma'),
 			},
 		];
 		setChatMessages(newChatMessages);
@@ -32,6 +35,7 @@ export function ChatInput({ chatMessages, setChatMessages }) {
 				message: <img className="loading-image" src={LoadingSpinnerImage} />,
 				sender: 'robot',
 				id: crypto.randomUUID(),
+				chatTime: dayjs(time).format('h:mma'),
 			},
 		]);
 		try {
@@ -43,6 +47,7 @@ export function ChatInput({ chatMessages, setChatMessages }) {
 					message: response,
 					sender: 'robot',
 					id: crypto.randomUUID(),
+					chatTime: dayjs(time).format('h:mma'),
 				},
 			]);
 		} finally {
@@ -58,6 +63,12 @@ export function ChatInput({ chatMessages, setChatMessages }) {
 		}
 	}
 
+	function removeMessage() {
+		setChatMessages([]);
+
+		localStorage.setItem('messages', JSON.stringify([]));
+	}
+
 	return (
 		<div className="chat-input-container">
 			<input
@@ -70,6 +81,9 @@ export function ChatInput({ chatMessages, setChatMessages }) {
 			/>
 			<button onClick={sendMessage} className="send-button">
 				Send
+			</button>
+			<button onClick={removeMessage} className="clear-button">
+				Clear
 			</button>
 		</div>
 	);
