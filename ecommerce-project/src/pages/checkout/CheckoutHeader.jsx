@@ -4,10 +4,11 @@ import { Link } from 'react-router';
 export function CheckoutHeader() {
 	return (
 		<>
+			<link rel="icon" type="image/svg+xml" href="cart-favicon.png" />
 			<div className="checkout-header">
 				<div className="header-content">
 					<div className="checkout-header-left-section">
-						<Link href="/">
+						<Link to="/">
 							<img className="logo" src="images/logo.png" />
 							<img className="mobile-logo" src="images/mobile-logo.png" />
 						</Link>
