@@ -1,5 +1,11 @@
 import { Header } from '../components/Header';
 import './HomePage.css';
+import cottonSocks from '../assets/images/products/athletic-cotton-socks-6-pairs.jpg';
+import cottonSocksRating from '../assets/images/ratings/rating-45.png';
+import checkmark from '../assets/images/icons/checkmark.png';
+import basketball from '../assets/images/products/intermediate-composite-basketball.jpg';
+import basketballRating from '../assets/images/ratings/rating-40.png';
+import adultTshirt from '../assets/images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg';
 
 export function HomePage() {
 	return (
@@ -12,10 +18,7 @@ export function HomePage() {
 				<div className="products-grid">
 					<div className="product-container">
 						<div className="product-image-container">
-							<img
-								className="product-image"
-								src="images/products/athletic-cotton-socks-6-pairs.jpg"
-							/>
+							<img className="product-image" src={cottonSocks} />
 						</div>
 
 						<div className="product-name limit-text-to-2-lines">
@@ -23,10 +26,7 @@ export function HomePage() {
 						</div>
 
 						<div className="product-rating-container">
-							<img
-								className="product-rating-stars"
-								src="images/ratings/rating-45.png"
-							/>
+							<img className="product-rating-stars" src={cottonSocksRating} />
 							<div className="product-rating-count link-primary">87</div>
 						</div>
 
@@ -50,7 +50,7 @@ export function HomePage() {
 						<div className="product-spacer"></div>
 
 						<div className="added-to-cart">
-							<img src="images/icons/checkmark.png" />
+							<img src={checkmark} />
 							Added
 						</div>
 
@@ -61,10 +61,7 @@ export function HomePage() {
 
 					<div className="product-container">
 						<div className="product-image-container">
-							<img
-								className="product-image"
-								src="images/products/intermediate-composite-basketball.jpg"
-							/>
+							<img className="product-image" src={basketball} />
 						</div>
 
 						<div className="product-name limit-text-to-2-lines">
@@ -72,10 +69,7 @@ export function HomePage() {
 						</div>
 
 						<div className="product-rating-container">
-							<img
-								className="product-rating-stars"
-								src="images/ratings/rating-40.png"
-							/>
+							<img className="product-rating-stars" src={basketballRating} />
 							<div className="product-rating-count link-primary">127</div>
 						</div>
 
@@ -99,7 +93,7 @@ export function HomePage() {
 						<div className="product-spacer"></div>
 
 						<div className="added-to-cart">
-							<img src="images/icons/checkmark.png" />
+							<img src={checkmark} />
 							Added
 						</div>
 
@@ -110,10 +104,7 @@ export function HomePage() {
 
 					<div className="product-container">
 						<div className="product-image-container">
-							<img
-								className="product-image"
-								src="images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg"
-							/>
+							<img className="product-image" src={adultTshirt} />
 						</div>
 
 						<div className="product-name limit-text-to-2-lines">
@@ -121,10 +112,7 @@ export function HomePage() {
 						</div>
 
 						<div className="product-rating-container">
-							<img
-								className="product-rating-stars"
-								src="images/ratings/rating-45.png"
-							/>
+							<img className="product-rating-stars" src={cottonSocksRating} />
 							<div className="product-rating-count link-primary">56</div>
 						</div>
 
@@ -148,7 +136,7 @@ export function HomePage() {
 						<div className="product-spacer"></div>
 
 						<div className="added-to-cart">
-							<img src="images/icons/checkmark.png" />
+							<img src={checkmark} />
 							Added
 						</div>
 
