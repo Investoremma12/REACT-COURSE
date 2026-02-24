@@ -1,13 +1,15 @@
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Header } from '../components/Header';
 import './HomePage.css';
-import checkmark from '../assets/images/icons/checkmark.png';
-import { products } from '../../starting-code/ecommerce-project-main/data/products';
 
 export function HomePage() {
-	axios.get('http://localhost:3000/api/products').then((response) => {
-		response.data;
-	});
+	const [products, setProduct] = useState([]);
+	useEffect(() => {
+		axios.get('http://localhost:3000/api/products').then((response) => {
+			setProduct(response.data);
+		});
+	}, []);
 
 	return (
 		<>
@@ -31,7 +33,7 @@ export function HomePage() {
 								<div className="product-rating-container">
 									<img
 										className="product-rating-stars"
-										src={`../src/assets/images/ratings/rating-${product.rating.stars * 10}.png`}
+										src={`images/ratings/rating-${product.rating.stars * 10}.png`}
 									/>
 									<div className="product-rating-count link-primary">
 										{product.rating.count}
@@ -60,7 +62,7 @@ export function HomePage() {
 								<div className="product-spacer"></div>
 
 								<div className="added-to-cart">
-									<img src={checkmark} />
+									<img src="images/icons/checkmark.png" />
 									Added
 								</div>
 

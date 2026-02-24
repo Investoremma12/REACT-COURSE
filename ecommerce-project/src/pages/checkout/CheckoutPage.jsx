@@ -1,7 +1,6 @@
 import './CheckoutPage.css';
 import { CheckoutHeader } from './CheckoutHeader';
-import cottonSocks from '../../assets/images/products/athletic-cotton-socks-6-pairs.jpg';
-import basketball from '../../assets/images/products/intermediate-composite-basketball.jpg';
+
 
 export function CheckoutPage() {
 	return (
@@ -21,7 +20,7 @@ export function CheckoutPage() {
 							</div>
 
 							<div className="cart-item-details-grid">
-								<img className="product-image" src={cottonSocks} />
+								<img className="product-image" src='images/products/athletic-cotton-socks-6-pairs.jpg' />
 
 								<div className="cart-item-details">
 									<div className="product-name">
@@ -99,7 +98,7 @@ export function CheckoutPage() {
 							</div>
 
 							<div className="cart-item-details-grid">
-								<img className="product-image" src={basketball} />
+								<img className="product-image" src='images/products/intermediate-composite-basketball.jpg' />
 
 								<div className="cart-item-details">
 									<div className="product-name">
