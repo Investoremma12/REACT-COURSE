@@ -1,6 +1,6 @@
-import { Header } from '../components/Header';
+import { Header } from '../../components/Header';
 import axios from 'axios';
-import { formatMoney } from '../utils/money';
+import { formatMoney } from '../../utils/money';
 import { useState, useEffect, Fragment } from 'react';
 import './OrderPage.css';
 import { Link } from 'react-router';
