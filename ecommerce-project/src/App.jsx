@@ -6,7 +6,7 @@ import axios from 'axios';
 import { HomePage } from './pages/Home/HomePage';
 import { CheckoutPage } from './pages/checkout/CheckoutPage';
 import { OrderPage } from './pages/orders/OrderPage';
-import { TrackingPage } from './pages/TrackingPage';
+import { TrackingPage } from './pages/tracking/TrackingPage';
 import { ErrorPage } from './pages/ErrorPage';
 
 function App() {
@@ -25,8 +25,11 @@ function App() {
 				<Route path="/" element={<HomePage cart={cart} />} />
 				<Route path="checkout" element={<CheckoutPage cart={cart} />} />
 				<Route path="orders" element={<OrderPage cart={cart} />} />
-				<Route path="tracking" element={<TrackingPage />} />
-				<Route path="*" element={<ErrorPage />} />
+				<Route
+					path="tracking/:orderId/:productId"
+					element={<TrackingPage cart={cart} />}
+				/>
+				<Route path="*" element={<ErrorPage cart={cart} />} />
 			</Routes>
 		</>
 	);
