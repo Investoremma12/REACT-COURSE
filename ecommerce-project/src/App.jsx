@@ -20,6 +20,7 @@ function App() {
 	}, []);
 
 	const [quantity, setQuantity] = useState(1);
+	window.axios = axios;
 
 	return (
 		<>
