@@ -19,18 +19,37 @@ function App() {
 		loadCart();
 	}, []);
 
+	const [quantity, setQuantity] = useState(1);
+
 	return (
 		<>
 			<Routes>
 				<Route
 					path="/"
-					element={<HomePage cart={cart} loadCart={loadCart} />}
+					element={
+						<HomePage
+							cart={cart}
+							loadCart={loadCart}
+							quantity={quantity}
+							setQuantity={setQuantity}
+						/>
+					}
 				/>
 				<Route
 					path="checkout"
 					element={<CheckoutPage cart={cart} loadCart={loadCart} />}
 				/>
-				<Route path="orders" element={<OrderPage cart={cart} />} />
+				<Route
+					path="orders"
+					element={
+						<OrderPage
+							cart={cart}
+							loadCart={loadCart}
+							quantity={quantity}
+							setQuantity={setQuantity}
+						/>
+					}
+				/>
 				<Route
 					path="tracking/:orderId/:productId"
 					element={<TrackingPage cart={cart} />}
