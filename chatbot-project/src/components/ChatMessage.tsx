@@ -3,7 +3,7 @@ import UserProfileImage from '../assets/user-face-profile.jpg';
 import './ChatMessage.css';
 
 type HeaderProps = {
-	message: number;
+	message: string;
 	sender: string;
 	time: string;
 };
