@@ -2,7 +2,13 @@ import RobotProfileImage from '../assets/robot.png';
 import UserProfileImage from '../assets/user-face-profile.jpg';
 import './ChatMessage.css';
 
-export function ChatMessage({ message, sender, time }) {
+type HeaderProps = {
+	message: number;
+	sender: string;
+	time: string;
+};
+
+export function ChatMessage({ message, sender, time }: HeaderProps) {
 	// const { message, sender } = props;
 
 	/*if (sender === 'robot') {
