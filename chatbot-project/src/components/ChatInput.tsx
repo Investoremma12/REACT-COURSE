@@ -1,14 +1,40 @@
 import { useState } from 'react';
 import { Chatbot } from 'supersimpledev';
-import LoadingSpinnerImage from '../assets/loading-spinner.gif';
 import './ChatInput.css';
 import dayjs from 'dayjs';
+import LoadingSpinnerImage from '../assets/loading-spinner.gif';
 
-export function ChatInput({ chatMessages, setChatMessages }) {
+type ChatInputProps = {
+	chatMessages: {
+		id: string;
+		message: string | React.ReactNode;
+		sender: string;
+		chatTime: string;
+	}[];
+	setChatMessages: (
+		chatMessages: {
+			id: string;
+			message: string | React.ReactNode;
+			sender: string;
+			chatTime: string;
+		}[],
+	) => void;
+};
+
+type ChangeEventProps = {
+	target: {
+		value: string;
+	};
+};
+
+type KeyEventProps = {
+	key: string;
+};
+export function ChatInput({ chatMessages, setChatMessages }: ChatInputProps) {
 	const [inputText, setInputText] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 
-	function saveInputText(event) {
+	function saveInputText(event: ChangeEventProps) {
 		setInputText(event.target.value);
 	}
 	async function sendMessage() {
@@ -55,7 +81,7 @@ export function ChatInput({ chatMessages, setChatMessages }) {
 		}
 	}
 
-	function saveEnterMessages(event) {
+	function saveEnterMessages(event: KeyEventProps) {
 		if (event.key === 'Enter') {
 			sendMessage();
 		} else if (event.key === 'Escape') {
@@ -73,7 +99,7 @@ export function ChatInput({ chatMessages, setChatMessages }) {
 		<div className="chat-input-container">
 			<input
 				placeholder="Send a message to Chatbot"
-				size="30"
+				size={30}
 				onChange={saveInputText}
 				value={inputText}
 				onKeyDown={saveEnterMessages}
